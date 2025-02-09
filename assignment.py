@@ -30,7 +30,11 @@ def array_operations(arr):
     Returns:
         tuple: (mean, std_dev, max_value)
     """
-    pass
+    #arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    return arr.mean()
+    return arr.std()
+    return arr.max()
+
 
 def read_csv_file(filepath):
     """
@@ -40,7 +44,7 @@ def read_csv_file(filepath):
     Returns:
         pandas.DataFrame: Loaded dataframe
     """
-    pass
+    return pd.read_csv(filepath)
 
 def handle_missing_values(df):
     """
@@ -50,7 +54,16 @@ def handle_missing_values(df):
     Returns:
         pandas.DataFrame: Cleaned dataframe
     """
-    pass
+    #count if any missing values
+    df.isnull().sum()
+    
+    # Treating the missing values
+    for column in df.columns:
+        if df[column].dtype in ['int64', 'float64']:  # Numeric columns
+            df[column].fillna(df[column].mean(), inplace=True)
+        else:  # for object columns
+            df[column].fillna(df[column].mode()[0], inplace=True)  # Fill with the most frequent value
+    return df
 
 def select_data(df):
     """
@@ -58,7 +71,7 @@ def select_data(df):
     Returns:
         pandas.DataFrame: Selected data
     """
-    pass
+    return df[['Name', 'Age']]
 
 def rename_columns(df):
     """
@@ -66,4 +79,4 @@ def rename_columns(df):
     Returns:
         pandas.DataFrame: DataFrame with renamed columns
     """
-    pass
+    return df.rename(columns={'Name': 'Full Name', 'Age': 'Years'})

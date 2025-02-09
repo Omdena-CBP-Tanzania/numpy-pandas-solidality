@@ -97,6 +97,10 @@ def test_array_operations():
     assert np.isclose(result[1], 1.4142, atol=0.1), "Standard deviation check"
     assert result[2] == 5, "Max value should be 5"
     
-    create_1d_array()
-    create_2d_array()
-    
+    test_create_1d_array()
+    test_create_2d_array()
+    test_array_operations()
+    create_sample_csv()
+    test_handle_missing_values()
+    test_rename_columns()
+    test_select_data()
