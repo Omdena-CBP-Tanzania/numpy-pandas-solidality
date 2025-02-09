@@ -8,7 +8,7 @@ def create_1d_array():
         numpy.ndarray: 1D array
     """
     arr = np.array([1,2,3,4,5])
-    return(arr)
+    return arr
     
 
 def create_2d_array():
@@ -17,7 +17,9 @@ def create_2d_array():
     Returns:
         numpy.ndarray: 2D array
     """
-    pass
+    arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    return arr
+    
 
 def array_operations(arr):
     """
