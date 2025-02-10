@@ -2,30 +2,26 @@ import numpy as np
 import pandas as pd
 
 def create_1d_array():
-    arr=np.array([1,2,3,4,5])
-    return create_1d_array
     """
     Create a 1D NumPy array with values [1, 2, 3, 4, 5]
     Returns:
         numpy.ndarray: 1D array
     """
-    pass
+    arr = np.array([1,2,3,4,5])
+    return arr
+    
 
 def create_2d_array():
-    arr=np.array([1,2,3],[5,6,7])
-    return(create_2d_array)
     """
     Create a 2D NumPy array with shape (3,3) of consecutive integers
     Returns:
         numpy.ndarray: 2D array
     """
-    pass
+    arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    return arr
+    
 
 def array_operations(arr):
-    arr.mean()
-    arr.std()
-    arr.max()
-    return(array_operations)
     """
     Perform basic array operations:
     1. Calculate mean
@@ -34,17 +30,13 @@ def array_operations(arr):
     Returns:
         tuple: (mean, std_dev, max_value)
     """
-    pass
+    #arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    return arr.mean()
+    return arr.std()
+    return arr.max()
+
 
 def read_csv_file(filepath):
-    sample_dt = {
-        'Name': ['Zuberi', 'John', 'Monica', 'Ammy'],
-        'Age': [25, np.nan, 30, 35],
-        'Salary': [500, 600, np.nan, 750]
-    }
-    df = pd.DataFrame(sample_dt)
-    df.to_csv('sample_dt.csv', index=False)
-    return(read_csv_file)
     """
     Read a CSV file using Pandas
     Args:
@@ -52,12 +44,9 @@ def read_csv_file(filepath):
     Returns:
         pandas.DataFrame: Loaded dataframe
     """
-    pass
+    return pd.read_csv(filepath)
 
 def handle_missing_values(df):
-    cleaned_df=df['Age'].isna().sum()==0
-    cleaned_df=df['Salary'].isna().sum()==0
-    return(handle_missing_values)
     """
     Handle missing values in the DataFrame
     1. Identify number of missing values
@@ -65,25 +54,29 @@ def handle_missing_values(df):
     Returns:
         pandas.DataFrame: Cleaned dataframe
     """
-    pass
+    #count if any missing values
+    df.isnull().sum()
+    
+    # Treating the missing values
+    for column in df.columns:
+        if df[column].dtype in ['int64', 'float64']:  # Numeric columns
+            df[column].fillna(df[column].mean(), inplace=True)
+        else:  # for object columns
+            df[column].fillna(df[column].mode()[0], inplace=True)  # Fill with the most frequent value
+    return df
 
 def select_data(df):
-    selected_df=df['Name','Age','Salary']
-    selected_df=pd.DataFrame(selected_df)
-    return(select_data)
     """
     Select specific columns and rows from DataFrame
     Returns:
         pandas.DataFrame: Selected data
     """
-    pass
+    return df[['Name', 'Age']]
 
 def rename_columns(df):
-    renamed_df=select_data['name','age','salary']
-    return(rename_columns)
     """
     Rename columns of the DataFrame
     Returns:
         pandas.DataFrame: DataFrame with renamed columns
     """
-    pass
+    return df.rename(columns={'Name': 'Full Name', 'Age': 'Years'})
